@@ -6,37 +6,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* BASIC */
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
   background:linear-gradient(135deg,#ff5f9e,#ff9a9e,#fad0c4);
   color:white;
   overflow-x:hidden;
-  -webkit-user-select:none;
-  user-select:none;
 }
 
-/* DISABLE IMAGE INTERACTION */
-img{
-  pointer-events:none;
-  -webkit-user-drag:none;
-  user-drag:none;
+.screen{
+  padding:30px 15px;
+  text-align:center;
 }
 
-/* SCREEN */
-.screen{padding:30px 15px;text-align:center;}
-
-/* SHAYARI */
+/* SHAYARI STYLE */
 .shayari-box{
   max-width:320px;
   margin:20px auto 40px;
   text-align:left;
   font-size:18px;
   line-height:1.6;
+  animation:fadeUp 2s ease forwards;
 }
-.shayari-box span{font-weight:600;}
-.shayari-box .highlight{font-size:20px;font-weight:bold;}
+.shayari-box span{font-weight:600;color:#fff;}
+.shayari-box .highlight{
+  margin-top:10px;
+  font-size:20px;
+  font-weight:bold;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
 
 /* PHOTO CARD */
 .card{
@@ -62,8 +64,12 @@ img{
   object-fit:cover;
   border-radius:14px;
 }
+.left{transform:rotate(-4deg) translateX(-25px);}
+.right{transform:rotate(4deg) translateX(25px);}
 
-/* HEART ANIMATION */
+h2{margin-top:50px;}
+
+/* HEART ANIMATIONS */
 @keyframes tapFloat{
   0%{transform:scale(1);opacity:1;}
   100%{transform:scale(2) translateY(-80px);opacity:0;}
@@ -72,88 +78,77 @@ img{
   from{transform:translateY(0);opacity:1;}
   to{transform:translateY(-100vh);opacity:0;}
 }
-
-/* SCREENSHOT BLUR */
-#blur{
-  position:fixed;
-  inset:0;
-  background:black;
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
-  z-index:9999;
-}
 </style>
 </head>
 
 <body>
 
-<div id="blur"></div>
-
 <div class="screen">
 
+<!-- SHAYARI -->
 <div class="shayari-box">
   <p>Likhun…</p>
   <p>Toh <span>"lafz"</span> tum ho</p>
+
   <p>Sochu…</p>
   <p>Toh <span>"khayaal"</span> tum ho</p>
+
   <p>Maangu…</p>
   <p>Toh <span>"dua"</span> tum ho</p>
-  <p class="highlight">Sach kahu… mohabbat tum ho, mera baccha ❤️</p>
+
+  <p>Sach kahu…</p>
+  <p class="highlight">Toh mohabbat tum ho, mera baccha ❤️</p>
 </div>
 
+<!-- SONG -->
 <audio id="loveSong" autoplay loop controls>
   <source src="song.mp3">
 </audio>
 
 <h2>🌹 Rose Day</h2>
-<div class="card"><img src="rose.jpg"></div>
+<p>Mera baccha, tum meri zindagi ka sabse khoobsurat phool ho 🌹</p>
+<div class="card left"><img src="rose.jpg"></div>
 
 <h2>💍 Propose Day</h2>
-<div class="card"><img src="propose.jpg"></div>
+<p>Main har janam tumhe hi choose karunga ❤️</p>
+<div class="card right"><img src="propose.jpg"></div>
 
 <h2>🍫 Chocolate Day</h2>
-<div class="card"><img src="chocolate.jpg"></div>
+<p>Tum chocolate jaise ho – sweet aur addictive 😍</p>
+<div class="card left"><img src="chocolate.jpg"></div>
 
 <h2>🧸 Teddy Day</h2>
-<div class="card"><img src="teddy.jpg"></div>
+<p>Munna, jab bhi miss karo samajhna main tumhare paas hoon 🤗</p>
+<div class="card right"><img src="teddy.jpg"></div>
 
 <h2>🤝 Promise Day</h2>
-<div class="card"><img src="promise.jpg"></div>
+<p>Wada hai hamesha tumhara saath nibhaunga 💕</p>
+<div class="card left"><img src="promise.jpg"></div>
 
 <h2>🤗 Hug Day</h2>
-<div class="card"><img src="hug.jpg"></div>
+<p>Tumhari hug meri duniya hai ❤️</p>
+<div class="card right"><img src="hug.jpg"></div>
 
 <h2>❤️ Valentine Day</h2>
-<div class="card"><img src="valentine.jpg"></div>
+<p><b>I Love You Forever, Mera Baccha 💘</b></p>
+<div class="card left"><img src="valentine.jpg"></div>
 
 </div>
 
-<!-- BLOCK RIGHT CLICK -->
-<script>
-document.addEventListener("contextmenu",e=>e.preventDefault());
-</script>
-
-<!-- BLOCK LONG PRESS (MOBILE) -->
-<script>
-document.addEventListener("touchstart",e=>{
- if(e.touches.length>1)e.preventDefault();
-},{passive:false});
-</script>
-
 <!-- TAP HEARTS -->
 <script>
-const emojis=["💖","💘","💕","❤️","😍"];
+const emojis=["💖","💘","💗","💕","❤️","😍","😘"];
 document.addEventListener("click",(e)=>{
  const h=document.createElement("div");
  h.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
  h.style.position="fixed";
- h.style.left=e.clientX+"px";
- h.style.top=e.clientY+"px";
- h.style.fontSize="32px";
- h.style.animation="tapFloat 1.5s ease-out";
+ h.style.left=(e.clientX-15)+"px";
+ h.style.top=(e.clientY-15)+"px";
+ h.style.fontSize="34px";
+ h.style.pointerEvents="none";
+ h.style.animation="tapFloat 1.8s ease-out";
  document.body.appendChild(h);
- setTimeout(()=>h.remove(),1500);
+ setTimeout(()=>h.remove(),1800);
 });
 </script>
 
@@ -168,23 +163,12 @@ song.addEventListener("play",()=>{
    b.style.position="fixed";
    b.style.left=Math.random()*100+"%";
    b.style.bottom="0";
-   b.style.fontSize="28px";
+   b.style.fontSize="30px";
    b.style.animation="beatUp 3.5s linear";
    document.body.appendChild(b);
    setTimeout(()=>b.remove(),3500);
   }
  },700);
-});
-</script>
-
-<!-- SCREENSHOT DETECTOR (VISUAL) -->
-<script>
-document.addEventListener("visibilitychange",()=>{
- if(document.hidden){
-  document.getElementById("blur").style.opacity=1;
- }else{
-  document.getElementById("blur").style.opacity=0;
- }
 });
 </script>
 
