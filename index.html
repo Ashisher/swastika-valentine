@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Swastika ❤️ Valentine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+ margin:0;
+ font-family:'Segoe UI',sans-serif;
+ background:linear-gradient(135deg,#d4145a,#ff6a88);
+ color:white;
+ text-align:center;
+ overflow-x:hidden;
+}
+.screen{padding:30px 15px;}
+.section{
+ margin:35px 0;
+ padding-bottom:25px;
+ border-bottom:1px solid rgba(255,255,255,0.4);
+}
+img{
+ width:220px;
+ height:220px;
+ object-fit:cover;
+ border-radius:20px;
+ border:4px solid white;
+ margin-top:15px;
+}
+.timer{font-size:22px;margin:15px 0;}
+.typing{font-size:20px;min-height:70px;}
+canvas{
+ position:fixed;
+ top:0;left:0;
+ z-index:-1;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<div class="screen">
+
+<h1>❤️ Happy Valentine Swastika ❤️</h1>
+<p>Meri ekloti jaan, mera baccha, beta, munna 💖</p>
+
+<audio autoplay loop controls>
+ <source src="song.mp3">
+</audio>
+
+<div class="timer" id="countdown"></div>
+
+<div class="typing" id="typing"></div>
+
+<div class="section">
+<h2>🌹 Rose Day</h2>
+<p>Swastika, tum meri zindagi ka sabse khoobsurat phool ho 🌹</p>
+<img src="rose.jpg">
+</div>
+
+<div class="section">
+<h2>💍 Propose Day</h2>
+<p>Mera baccha, main har janam tumhe hi choose karunga ❤️</p>
+<img src="propose.jpg">
+</div>
+
+<div class="section">
+<h2>🍫 Chocolate Day</h2>
+<p>Beta, tum chocolate jaise ho – sweet aur addictive 😍</p>
+<img src="chocolate.jpg">
+</div>
+
+<div class="section">
+<h2>🧸 Teddy Day</h2>
+<p>Munna, jab bhi miss karo samajhna main tumhare paas hoon 🤗</p>
+<img src="teddy.jpg">
+</div>
+
+<div class="section">
+<h2>🤝 Promise Day</h2>
+<p>Meri ekloti jaan, wada hai hamesha tumhara saath nibhaunga 💕</p>
+<img src="promise.jpg">
+</div>
+
+<div class="section">
+<h2>🤗 Hug Day</h2>
+<p>Swastika, tumhari hug meri duniya hai ❤️</p>
+<img src="hug.jpg">
+</div>
+
+<div class="section">
+<h2>💋 Kiss Day</h2>
+<p>Mera baccha, ek kiss jo dil tak pahunch jaaye 😘</p>
+<img src="kiss.jpg">
+</div>
+
+<div class="section">
+<h2>❤️ Valentine Day</h2>
+<p>
+Swastika, meri ekloti jaan ❤️  
+tum meri zindagi ka sabse khoobsurat hissa ho.  
+<br><b>I Love You Forever Munna</b>
+</p>
+<img src="valentine.jpg">
+</div>
+
+</div>
+
+<script>
+/* COUNTDOWN */
+var v=new Date("Feb 14, 2026 00:00:00").getTime();
+setInterval(()=>{
+ let d=v-new Date().getTime();
+ document.getElementById("countdown").innerHTML=
+ "⏳ Valentine in "+Math.floor(d/(1000*60*60*24))+" days";
+},1000);
+
+/* TYPING */
+let text="Swastika Dewedi… tum sirf meri mohabbat nahi ho, tum meri aadat ho, meri ekloti jaan ho, mera baccha, mera beta, mera munna ho ❤️";
+let i=0;
+function typeText(){
+ if(i<text.length){
+  document.getElementById("typing").innerHTML+=text.charAt(i);
+  i++;
+  setTimeout(typeText,70);
+ }
+}
+typeText();
+
+/* FIREWORKS */
+let c=document.getElementById("fireworks"),ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+setInterval(()=>{
+ ctx.fillStyle="rgba(0,0,0,0.15)";
+ ctx.fillRect(0,0,c.width,c.height);
+ ctx.fillStyle="hsl("+Math.random()*360+",100%,65%)";
+ ctx.beginPath();
+ ctx.arc(Math.random()*c.width,Math.random()*c.height,3,0,Math.PI*2);
+ ctx.fill();
+},60);
+</script>
+
+</body>
+  </html>
