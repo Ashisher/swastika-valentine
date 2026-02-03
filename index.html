@@ -1,53 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Swastika ❤️ Valentine</title>
+<title>Happy Valentine Swastika ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body{
- margin:0;
- font-family:'Segoe UI',sans-serif;
- background:linear-gradient(135deg,#d4145a,#ff6a88);
- color:white;
- text-align:center;
- overflow-x:hidden;
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff5f9e,#ff9a9e,#fad0c4);
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
 }
+
 .screen{padding:30px 15px;}
+
 .section{
  margin:35px 0;
  padding-bottom:25px;
- border-bottom:1px solid rgba(255,255,255,0.4);
+ border-bottom:1px solid rgba(255,255,255,0.5);
 }
+
 img{
  width:220px;
  height:220px;
  object-fit:cover;
- border-radius:20px;
+ border-radius:22px;
  border:4px solid white;
  margin-top:15px;
+ box-shadow:0 0 20px rgba(255,105,180,0.6);
 }
+
 .timer{font-size:22px;margin:15px 0;}
-.typing{font-size:20px;min-height:70px;}
-canvas{
- position:fixed;
- top:0;left:0;
- z-index:-1;
+
+.typing{
+ font-size:20px;
+ min-height:70px;
+ margin:15px 0;
+}
+
+/* TAP HEART ANIMATION */
+@keyframes tapFloat{
+  0%{transform:scale(1) translateY(0);opacity:1;}
+  100%{transform:scale(1.8) translateY(-70px);opacity:0;}
+}
+
+/* SONG BEAT HEARTS */
+@keyframes beatUp{
+ from{transform:translateY(0);opacity:1;}
+ to{transform:translateY(-100vh);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="fireworks"></canvas>
-
 <div class="screen">
 
 <h1>❤️ Happy Valentine Swastika ❤️</h1>
 <p>Meri ekloti jaan, mera baccha, beta, munna 💖</p>
 
-<audio autoplay loop controls>
- <source src="song.mp3">
+<audio id="loveSong" autoplay loop controls>
+  <source src="song.mp3">
 </audio>
 
 <div class="timer" id="countdown"></div>
@@ -91,33 +107,29 @@ canvas{
 </div>
 
 <div class="section">
-<h2>💋 Kiss Day</h2>
-<p>Mera baccha, ek kiss jo dil tak pahunch jaaye 😘</p>
-<img src="kiss.jpg">
-</div>
-
-<div class="section">
 <h2>❤️ Valentine Day</h2>
 <p>
-Swastika, meri ekloti jaan ❤️  
-tum meri zindagi ka sabse khoobsurat hissa ho.  
-<br><b>I Love You Forever Munna</b>
+Swastika, meri ekloti jaan ❤️<br>
+tum meri zindagi ka sabse khoobsurat hissa ho.<br>
+<b>I Love You Forever Munna</b>
 </p>
 <img src="valentine.jpg">
 </div>
 
 </div>
 
+<!-- COUNTDOWN -->
 <script>
-/* COUNTDOWN */
-var v=new Date("Feb 14, 2026 00:00:00").getTime();
+var v = new Date("Feb 14, 2026 00:00:00").getTime();
 setInterval(()=>{
  let d=v-new Date().getTime();
- document.getElementById("countdown").innerHTML=
+ document.getElementById("countdown").innerHTML =
  "⏳ Valentine in "+Math.floor(d/(1000*60*60*24))+" days";
 },1000);
+</script>
 
-/* TYPING */
+<!-- TYPING TEXT -->
+<script>
 let text="Swastika Dewedi… tum sirf meri mohabbat nahi ho, tum meri aadat ho, meri ekloti jaan ho, mera baccha, mera beta, mera munna ho ❤️";
 let i=0;
 function typeText(){
@@ -128,19 +140,46 @@ function typeText(){
  }
 }
 typeText();
+</script>
 
-/* FIREWORKS */
-let c=document.getElementById("fireworks"),ctx=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
-setInterval(()=>{
- ctx.fillStyle="rgba(0,0,0,0.15)";
- ctx.fillRect(0,0,c.width,c.height);
- ctx.fillStyle="hsl("+Math.random()*360+",100%,65%)";
- ctx.beginPath();
- ctx.arc(Math.random()*c.width,Math.random()*c.height,3,0,Math.PI*2);
- ctx.fill();
-},60);
+<!-- TAP HEART / EMOJI -->
+<script>
+const emojis=["💖","💘","💗","💕","❤️","😍","😘"];
+document.addEventListener("click",(e)=>{
+ const h=document.createElement("div");
+ h.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+ h.style.position="fixed";
+ h.style.left=(e.clientX-10)+"px";
+ h.style.top=(e.clientY-10)+"px";
+ h.style.fontSize="26px";
+ h.style.pointerEvents="none";
+ h.style.animation="tapFloat 1.8s ease-out";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),1800);
+});
+</script>
+
+<!-- SONG BEAT HEARTS -->
+<script>
+const song=document.getElementById("loveSong");
+const beatHearts=["❤️","💖","💘"];
+
+song.addEventListener("play",()=>{
+ setInterval(()=>{
+  if(!song.paused){
+   const b=document.createElement("div");
+   b.innerHTML=beatHearts[Math.floor(Math.random()*beatHearts.length)];
+   b.style.position="fixed";
+   b.style.left=Math.random()*100+"%";
+   b.style.bottom="0";
+   b.style.fontSize="22px";
+   b.style.animation="beatUp 3s linear";
+   document.body.appendChild(b);
+   setTimeout(()=>b.remove(),3000);
+  }
+ },700);
+});
 </script>
 
 </body>
-  </html>
+</html>
