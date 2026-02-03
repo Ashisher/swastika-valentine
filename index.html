@@ -2,233 +2,263 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For My Mera Baccha ❤️</title>
+<title>My Love App ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{box-sizing:border-box}
 body{
   margin:0;
-  font-family:'Segoe UI',sans-serif;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
   background:linear-gradient(135deg,#ff5f9e,#ff9a9e,#fad0c4);
-  color:white;
-  overflow-x:hidden;
+  color:#fff;
 }
 
-.screen{
-  padding:30px 15px;
-  text-align:center;
+/* APK LOOK */
+.app{
+  max-width:430px;
+  margin:0 auto;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  border-radius:28px;
+  box-shadow:0 0 40px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+.header{
+  height:56px;
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:20px;
+}
+.content{
+  flex:1;
+  overflow-y:auto;
+  padding:16px 14px 90px;
+}
+.content::-webkit-scrollbar{display:none}
+.bottom{
+  height:66px;
+  position:fixed;
+  bottom:0;left:50%;transform:translateX(-50%);
+  width:430px;max-width:100%;
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(10px);
+  display:flex;justify-content:space-around;align-items:center;
+  border-top-left-radius:26px;border-top-right-radius:26px;
+  font-size:26px;
 }
 
-/* SHAYARI */
-.shayari-box{
-  max-width:320px;
-  margin:20px auto 40px;
-  text-align:left;
-  font-size:18px;
-  line-height:1.6;
-}
-.shayari-box .highlight{
-  font-size:20px;
-  font-weight:bold;
-}
-
-/* PHOTO CARD */
+/* Cards */
 .card{
-  position:relative;
-  width:230px;
-  margin:45px auto;
-  background:white;
-  padding:10px;
-  border-radius:18px;
-  box-shadow:0 15px 30px rgba(0,0,0,0.25);
+  background:rgba(255,255,255,.22);
+  border-radius:22px;
+  padding:18px;
+  margin:18px 0;
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
 }
-.card::before{
-  content:"📌";
-  position:absolute;
-  top:-18px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:28px;
-}
-.card img{
-  width:100%;
-  height:230px;
-  object-fit:cover;
-  border-radius:14px;
-}
-.left{transform:rotate(-4deg) translateX(-25px);}
-.right{transform:rotate(4deg) translateX(25px);}
+.card h2{margin:0 0 8px;font-size:22px}
+.card p{margin:6px 0;font-size:16px}
 
-.opt{
-  padding:12px 24px;
-  border:none;
-  border-radius:25px;
-  font-size:16px;
-  margin:6px;
+/* Buttons */
+.btn{
+  display:block;width:100%;
+  border:none;border-radius:30px;
+  padding:14px;margin:10px 0;
+  font-size:18px;font-weight:600;
+  background:#ff2f6d;color:#fff;
+  text-decoration:none;text-align:center;
 }
+.btn.alt{background:#ffffff;color:#ff2f6d}
+.btn:active{transform:scale(.98)}
 
-/* ANIMATIONS */
+/* Shayari */
+.shayari{
+  text-align:left;line-height:1.6;font-size:18px
+}
+.shayari .hi{font-size:20px;font-weight:700}
+
+/* Animations */
 @keyframes tapFloat{
-  0%{transform:scale(1);opacity:1;}
-  100%{transform:scale(2) translateY(-80px);opacity:0;}
+  from{transform:scale(1);opacity:1}
+  to{transform:scale(2) translateY(-80px);opacity:0}
 }
 @keyframes boom{
-  0%{transform:scale(0);opacity:1;}
-  100%{transform:scale(2);opacity:0;}
+  from{transform:scale(0);opacity:1}
+  to{transform:scale(2);opacity:0}
 }
+.side{
+  position:fixed;top:0;opacity:.5;font-size:28px;
+  animation:sideFloat 6s linear infinite
+}
+@keyframes sideFloat{
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-100vh)}
+}
+.hidden{display:none}
+.result{font-size:18px;margin-top:8px}
 </style>
 </head>
 
 <body>
 
-<div class="screen">
+<div class="app">
+  <div class="header">❤️ My Love App</div>
 
-<!-- SHAYARI -->
-<div class="shayari-box">
-  <p>Likhun… toh lafz tum ho</p>
-  <p>Sochu… toh khayaal tum ho</p>
-  <p>Maangu… toh dua tum ho</p>
-  <p class="highlight">Sach kahu… mohabbat tum ho, mera baccha ❤️</p>
-</div>
+  <div class="content">
 
-<!-- SONG -->
-<audio id="loveSong" autoplay loop controls>
-  <source src="song.mp3">
-</audio>
+    <!-- SHAYARI -->
+    <div class="card shayari">
+      <p>Likhun… toh lafz tum ho</p>
+      <p>Sochu… toh khayaal tum ho</p>
+      <p>Maangu… toh dua tum ho</p>
+      <p class="hi">Sach kahu… mohabbat tum ho, <b>mera baccha</b> ❤️</p>
+    </div>
 
-<!-- PHOTOS -->
-<h2>🌹 Rose Day</h2>
-<div class="card left"><img src="rose.jpg"></div>
+    <!-- I MISSED YOU / GM / GN -->
+    <div class="card">
+      <h2>💔 I Miss You</h2>
+      <p>Jab bhi yaad aaye, ek tap ❤️</p>
+      <a class="btn" target="_blank"
+         href="https://wa.me/918707873301?text=Mera%20baccha%20❤️%20mujhe%20tumhari%20bahut%20yaad%20aa%20rahi%20hai%20😘">
+        💌 Send on WhatsApp
+      </a>
 
-<h2>💍 Propose Day</h2>
-<div class="card right"><img src="propose.jpg"></div>
+      <a class="btn alt" target="_blank"
+         href="https://wa.me/918707873301?text=Good%20Morning%20mera%20baccha%20🌅%20Aaj%20ka%20din%20bahut%20pyaara%20ho%20😘">
+        🌅 Good Morning
+      </a>
 
-<h2>🍫 Chocolate Day</h2>
-<div class="card left"><img src="chocolate.jpg"></div>
+      <a class="btn alt" target="_blank"
+         href="https://wa.me/918707873301?text=Good%20Night%20mera%20baccha%20🌙%20Sweet%20dreams%20😘">
+        🌙 Good Night
+      </a>
+    </div>
 
-<h2>🧸 Teddy Day</h2>
-<div class="card right"><img src="teddy.jpg"></div>
+    <!-- LOVE QUIZ -->
+    <div class="card">
+      <h2>🎮 Love Quiz</h2>
+      <p><b>Main pyar se aapko kya bulata hu?</b></p>
+      <button class="btn alt" onclick="checkAns(false)">Jaan ❤️</button>
+      <button class="btn alt" onclick="checkAns(false)">Baby 😍</button>
+      <button class="btn" onclick="checkAns(true)">Mera baccha ❤️ 😘</button>
+      <button class="btn alt" onclick="checkAns(false)">Sweetheart 💖</button>
+      <div id="quizResult" class="result"></div>
+    </div>
 
-<h2>🤝 Promise Day</h2>
-<div class="card left"><img src="promise.jpg"></div>
+    <!-- SURPRISE -->
+    <div id="giftBox" class="card hidden">
+      <h2>🎁 Surprise Gift</h2>
+      <p>Tum meri zindagi ka sabse pyara gift ho ❤️</p>
+    </div>
 
-<h2>🤗 Hug Day</h2>
-<div class="card right"><img src="hug.jpg"></div>
+    <!-- SECRET -->
+    <div id="secretBox" class="card hidden">
+      <h2>🔐 Secret</h2>
+      <button class="btn" onclick="secretAns()">Hug karke 🤗</button>
+    </div>
 
-<h2>❤️ Valentine Day</h2>
-<div class="card left"><img src="valentine.jpg"></div>
+    <!-- TAP FOR LOVE -->
+    <div class="card">
+      <h2>💓 Tap For Love</h2>
+      <p>Taps: <b id="tapCount">0</b></p>
+    </div>
 
-<hr style="margin:50px 0;border:1px solid rgba(255,255,255,0.3);">
+    <!-- LOVE METER -->
+    <div class="card">
+      <h2>💞 Love Meter</h2>
+      <button class="btn" onclick="loveMeter()">Check Love</button>
+      <p id="loveResult"></p>
+    </div>
 
-<!-- 🎮 GAME ZONE -->
-<h1>🎮 Love & Fun Zone ❤️</h1>
+    <!-- SPIN -->
+    <div class="card">
+      <h2>🎡 Spin The Love</h2>
+      <button class="btn" onclick="spinLove()">Spin</button>
+      <p id="spinResult"></p>
+    </div>
 
-<!-- GAME 1: QUIZ -->
-<h2>💖 Love Quiz</h2>
-<div id="quizBox" style="background:rgba(255,255,255,0.15);padding:20px;border-radius:18px;max-width:320px;margin:auto;">
-  <p><b>Main pyar se aapko kya bulata hu?</b></p>
-  <button class="opt" onclick="checkAns(false)">Jaan ❤️</button><br>
-  <button class="opt" onclick="checkAns(false)">Baby 😍</button><br>
-  <button class="opt" onclick="checkAns(true)">Mera baccha ❤️ 😘</button><br>
-  <button class="opt" onclick="checkAns(false)">Sweetheart 💖</button>
-</div>
+  </div>
 
-<p id="quizResult" style="font-size:20px;"></p>
-
-<!-- 🎁 SURPRISE -->
-<div id="giftBox" style="display:none;">
-  <h2>🎁 Surprise Gift</h2>
-  <p>Tum meri zindagi ka sabse pyara gift ho ❤️</p>
-</div>
-
-<!-- 🔐 SECRET -->
-<div id="secretBox" style="display:none;">
-  <h2>🔐 Secret Question</h2>
-  <button class="opt" onclick="secretAns()">Hug karke 🤗</button>
-</div>
-
-<!-- GAME 2 -->
-<h2>💓 Tap For Love</h2>
-<p>Tap count: <span id="tapCount">0</span></p>
-
-<!-- GAME 3 -->
-<h2>💞 Love Meter</h2>
-<button class="opt" onclick="loveMeter()">Check Love</button>
-<p id="loveResult"></p>
-
-<!-- GAME 4 -->
-<h2>🎡 Spin The Love</h2>
-<button class="opt" onclick="spinLove()">Spin</button>
-<p id="spinResult"></p>
-
+  <div class="bottom">
+    <span>🏠</span><span>💖</span><span>🎮</span><span>🎁</span>
+  </div>
 </div>
 
 <script>
-/* QUIZ */
-function checkAns(correct){
-  if(correct){
-    quizResult.innerHTML="🥹💖 Bilkul sahi, mera baccha ❤️";
-    giftBox.style.display="block";
-    secretBox.style.display="block";
+/* Quiz */
+function checkAns(ok){
+  const r=document.getElementById('quizResult');
+  if(ok){
+    r.innerHTML="🥹💖 Bilkul sahi, mera baccha ❤️";
+    document.getElementById('giftBox').classList.remove('hidden');
+    document.getElementById('secretBox').classList.remove('hidden');
     firework();
   }else{
-    quizResult.innerHTML="😜 Galat! Fir se try karo ❤️";
+    r.innerHTML="😜 Galat! Fir se try karo ❤️";
   }
 }
 
-/* FIREWORK */
+/* Firework hearts */
 function firework(){
   for(let i=0;i<20;i++){
-    let h=document.createElement("div");
+    const h=document.createElement('div');
     h.innerHTML="💖";
-    h.style.position="fixed";
-    h.style.left=Math.random()*100+"%";
-    h.style.top=Math.random()*100+"%";
-    h.style.fontSize="30px";
-    h.style.animation="boom 1.5s ease-out";
+    h.style.position='fixed';
+    h.style.left=Math.random()*100+'%';
+    h.style.top=Math.random()*100+'%';
+    h.style.fontSize='30px';
+    h.style.animation='boom 1.5s ease-out';
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),1500);
   }
 }
 
-/* SECRET */
+/* Secret */
 function secretAns(){
   alert("Isliye tum meri jaan ho ❤️");
 }
 
-/* TAP GAME */
+/* Tap game + tap hearts */
 let taps=0;
-document.addEventListener("click",()=>{
-  taps++;
-  tapCount.innerText=taps;
-  if(taps==10){
-    alert("🎉 Tum meri duniya ho ❤️");
-  }
-});
-
-/* LOVE METER */
-function loveMeter(){
-  loveResult.innerHTML="💖 Love: "+(80+Math.floor(Math.random()*20))+"%";
-}
-
-/* SPIN */
-function spinLove(){
-  const arr=["💋 Kiss","🤗 Hug","🍫 Chocolate","🌹 Rose"];
-  spinResult.innerHTML=arr[Math.floor(Math.random()*arr.length)];
-}
-
-/* TAP HEART */
-document.addEventListener("click",(e)=>{
-  let h=document.createElement("div");
+document.addEventListener('click',(e)=>{
+  taps++; const tc=document.getElementById('tapCount');
+  if(tc) tc.textContent=taps;
+  const h=document.createElement('div');
   h.innerHTML="💖";
-  h.style.position="fixed";
-  h.style.left=e.clientX+"px";
-  h.style.top=e.clientY+"px";
-  h.style.fontSize="30px";
-  h.style.animation="tapFloat 1.5s ease-out";
+  h.style.position='fixed';
+  h.style.left=e.clientX+'px';
+  h.style.top=e.clientY+'px';
+  h.style.fontSize='30px';
+  h.style.animation='tapFloat 1.5s ease-out';
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),1500);
+  if(taps===10){alert("🎉 Tum meri duniya ho ❤️")}
 });
+
+/* Love meter */
+function loveMeter(){
+  document.getElementById('loveResult').innerHTML =
+    "💖 Love: "+(80+Math.floor(Math.random()*20))+"%";
+}
+
+/* Spin */
+function spinLove(){
+  const arr=["💋 Kiss","🤗 Hug","🍫 Chocolate","🌹 Rose","💌 Love Note"];
+  document.getElementById('spinResult').innerHTML =
+    arr[Math.floor(Math.random()*arr.length)];
+}
+
+/* Side hearts */
+setInterval(()=>{
+  const s=document.createElement('div');
+  s.className='side';
+  s.innerHTML='💖';
+  s.style.left=Math.random()<.5?'6px':'calc(100% - 40px)';
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),6000);
+},900);
 </script>
 
 </body>
