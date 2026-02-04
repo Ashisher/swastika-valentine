@@ -42,19 +42,7 @@ opacity:.25;
 z-index:-1;
 }
 
-/* 💘 Falling hearts */
-.heart{
-position:fixed;
-top:-20px;
-font-size:34px;
-animation:fall 6s linear infinite;
-}
-@keyframes fall{
-0%{transform:translateY(-10vh);}
-100%{transform:translateY(110vh);}
-}
-
-/* 📌 Pinned photos */
+/* 📌 Pinned Photos */
 .pin{
 position:relative;
 display:inline-block;
@@ -77,7 +65,31 @@ transform:translateX(-50%);
 font-size:34px;
 }
 
-/* 🎮 Game buttons */
+/* 💘 Emoji rain */
+.heart{
+position:fixed;
+top:-20px;
+font-size:34px;
+animation:fall 6s linear infinite;
+}
+@keyframes fall{
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(110vh);}
+}
+
+/* 💖 Tap Emoji */
+.tapEmoji{
+position:fixed;
+font-size:42px;
+animation:pop 1.2s forwards;
+pointer-events:none;
+}
+@keyframes pop{
+0%{opacity:1;transform:scale(1);}
+100%{opacity:0;transform:translateY(-100px) scale(2);}
+}
+
+/* 🎮 Game Buttons */
 .btn{
 background:#ff2f6d;
 border:none;
@@ -86,17 +98,6 @@ margin:6px;
 border-radius:30px;
 color:#fff;
 font-size:16px;
-}
-
-/* 💖 Emoji burst */
-.tapEmoji{
-position:fixed;
-font-size:42px;
-animation:pop 1.2s forwards;
-}
-@keyframes pop{
-0%{opacity:1;transform:scale(1);}
-100%{opacity:0;transform:translateY(-100px) scale(2);}
 }
 
 /* 🎬 Outro */
@@ -129,8 +130,8 @@ Sochu… toh khayaal tum ho <br>
 Maangu… toh dua tum ho ❤️
 </p>
 
-<!-- 🎵 RAABTA SONG -->
-<audio id="bgMusic" src="raabta.mp3" loop></audio>
+<!-- 🎵 SONG -->
+<audio id="bgMusic" src="song.mp3" loop></audio>
 
 <!-- 📸 LOVE DAYS -->
 <div>
@@ -159,7 +160,7 @@ Maangu… toh dua tum ho ❤️
 <div class="pin"><img src="valentine.jpg"></div>
 </div>
 
-<!-- 🎮 LOVE GAME -->
+<!-- 🎮 LOVE QUIZ -->
 <div>
 <h2>🎮 Love Quiz</h2>
 <p>Main pyar se aapko kya bulata hu?</p>
@@ -185,31 +186,17 @@ document.getElementById("fingerLock").onclick=()=>{
 document.getElementById("fingerLock").style.display="none";
 };
 
-/* 🎵 SONG START + AUTO EMOJIS */
+/* 💘 Emoji List */
+const emojis=["❤️","💘","😍","😘","💖","💋","💕","🌹","✨","🥰"];
+
+/* 🎵 Song Start + Emoji Rain */
 const music=document.getElementById("bgMusic");
 
 document.body.addEventListener("click",()=>{
 music.play();
-emojiRain();   // song start par emojis khud niklenge
+emojiRain();
 },{once:true});
 
-/* 💘 Emoji list */
-const emojis=["❤️","💘","😍","😘","💖","💋","💕","🌹","✨","🥰"];
-
-/* 💖 Tap per random emojis */
-document.addEventListener("click",(e)=>{
-for(let i=0;i<10;i++){
-let el=document.createElement("div");
-el.className="tapEmoji";
-el.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-el.style.left=e.clientX+"px";
-el.style.top=e.clientY+"px";
-document.body.appendChild(el);
-setTimeout(()=>el.remove(),1200);
-}
-});
-
-/* 🌧️ Song beat emoji rain */
 function emojiRain(){
 setInterval(()=>{
 let h=document.createElement("div");
@@ -220,6 +207,17 @@ document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
 },300);
 }
+
+/* 💖 ONE CLICK = ONE EMOJI */
+document.addEventListener("click",(e)=>{
+let el=document.createElement("div");
+el.className="tapEmoji";
+el.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+el.style.left=e.clientX+"px";
+el.style.top=e.clientY+"px";
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),1200);
+});
 
 /* 🎮 Game */
 function checkAns(correct){
