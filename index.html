@@ -13,18 +13,9 @@ text-align:center;
 color:white;
 overflow-x:hidden;
 background:linear-gradient(180deg,#ff9fb3,#ff7f9c);
-animation:softGlow 4s infinite alternate;
 }
 
-/* 💎 GLOW NAME */
-.glowName{
-font-size:30px;
-text-shadow:0 0 10px #fff,0 0 20px #ff2f6d;
-animation:nameGlow 2s infinite alternate;
-}
-@keyframes nameGlow{from{letter-spacing:1px;}to{letter-spacing:3px;}}
-
-/* 🔐 Finger Unlock */
+/* 🔐 Fingerprint Lock */
 #fingerLock{
 position:fixed;
 top:0;left:0;width:100%;height:100%;
@@ -34,52 +25,67 @@ align-items:center;
 justify-content:center;
 z-index:9999;
 }
-.finger{font-size:26px;background:rgba(255,255,255,.2);padding:20px;border-radius:20px}
+.finger{
+font-size:24px;
+background:rgba(255,255,255,.2);
+padding:20px;
+border-radius:20px;
+}
 
 /* 🌌 Stars */
 #stars{
-position:fixed;top:0;left:0;width:100%;height:100%;
+position:fixed;
+top:0;left:0;width:100%;height:100%;
 background-image:radial-gradient(white 1px,transparent 1px);
 background-size:40px 40px;
 opacity:.25;
 z-index:-1;
 }
 
-/* 💘 Falling Hearts */
+/* 💘 Falling hearts */
 .heart{
 position:fixed;
 top:-20px;
-font-size:36px;
+font-size:34px;
 animation:fall 6s linear infinite;
 }
-@keyframes fall{0%{transform:translateY(-10vh);}100%{transform:translateY(110vh);}}
+@keyframes fall{
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(110vh);}
+}
 
-/* 📸 Slider */
-.slider{
-display:flex;
-overflow-x:auto;
-scroll-snap-type:x mandatory;
-gap:20px;
-padding:20px;
+/* 📌 Random pinned photos */
+.pin{
+position:relative;
+display:inline-block;
+margin:25px;
 }
-.slide{
-min-width:80%;
-scroll-snap-align:center;
-background:rgba(255,255,255,.15);
-border-radius:20px;
-padding:15px;
-}
-.slide img{
-width:100%;
+.pin img{
+width:220px;
 border-radius:18px;
 border:6px solid #fff;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-animation:photoPulse 1.6s infinite ease-in-out;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
 }
-@keyframes photoPulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.05);}
-100%{transform:scale(1);}
+.pin:nth-child(odd){transform:rotate(-4deg);}
+.pin:nth-child(even){transform:rotate(4deg);}
+.pin::before{
+content:"📌";
+position:absolute;
+top:-22px;
+left:50%;
+transform:translateX(-50%);
+font-size:34px;
+}
+
+/* 🎮 Game */
+.btn{
+background:#ff2f6d;
+border:none;
+padding:14px 20px;
+margin:6px;
+border-radius:30px;
+color:#fff;
+font-size:16px;
 }
 
 /* 💖 Tap hearts */
@@ -93,7 +99,7 @@ animation:pop 1s forwards;
 100%{opacity:0;transform:translateY(-80px) scale(2);}
 }
 
-/* 💬 Outro */
+/* 🎬 Outro */
 #outro{
 position:fixed;
 bottom:-120px;
@@ -106,13 +112,7 @@ transition:.8s;
 }
 #outro.show{bottom:40px}
 
-/* 🫶 Slow motion */
-.slowLove{animation:slowMode .8s ease}
-@keyframes slowMode{
-0%{transform:scale(1);}
-50%{transform:scale(1.03);}
-100%{transform:scale(1);}
-}
+.hidden{display:none}
 </style>
 </head>
 
@@ -121,30 +121,62 @@ transition:.8s;
 <div id="fingerLock"><div class="finger">🔒 Touch to Unlock 💖</div></div>
 <div id="stars"></div>
 
-<h1 class="glowName">❤️ Ashish 💘 Mera Baccha ❤️</h1>
+<h1>❤️ Ashish 💘 Mera Baccha ❤️</h1>
 
 <p>
 Likhu… toh lafz tum ho <br>
 Sochu… toh khayaal tum ho <br>
-Maangu… toh dua tum ho <br>
-Sach kahu… mohabbat tum ho ❤️
+Maangu… toh dua tum ho ❤️
 </p>
 
-<!-- 📸 SWIPE SLIDER -->
-<div class="slider">
-<div class="slide"><h3>🌹 Rose Day</h3><img src="rose.jpg"></div>
-<div class="slide"><h3>💍 Propose Day</h3><img src="propose.jpg"></div>
-<div class="slide"><h3>🍫 Chocolate Day</h3><img src="chocolate.jpg"></div>
-<div class="slide"><h3>🧸 Teddy Day</h3><img src="teddy.jpg"></div>
-<div class="slide"><h3>🤝 Promise Day</h3><img src="promise.jpg"></div>
-<div class="slide"><h3>🤗 Hug Day</h3><img src="hug.jpg"></div>
-<div class="slide"><h3>💋 Kiss Day</h3><img src="kiss.jpg"></div>
-<div class="slide"><h3>❤️ Valentine Day</h3><img src="valentine.jpg"></div>
-</div>
-
+<!-- 🎵 RAABTA SONG -->
 <audio id="bgMusic" src="raabta.mp3" loop></audio>
 
-<div id="outro">💖 I Love You Forever Mera Baccha 💖</div>
+<!-- 📸 PIN STYLE PHOTOS -->
+<div>
+<h3>🌹 Rose Day</h3>
+<div class="pin"><img src="rose.jpg"></div>
+
+<h3>💍 Propose Day</h3>
+<div class="pin"><img src="propose.jpg"></div>
+
+<h3>🍫 Chocolate Day</h3>
+<div class="pin"><img src="chocolate.jpg"></div>
+
+<h3>🧸 Teddy Day</h3>
+<div class="pin"><img src="teddy.jpg"></div>
+
+<h3>🤝 Promise Day</h3>
+<div class="pin"><img src="promise.jpg"></div>
+
+<h3>🤗 Hug Day</h3>
+<div class="pin"><img src="hug.jpg"></div>
+
+<h3>💋 Kiss Day</h3>
+<div class="pin"><img src="kiss.jpg"></div>
+
+<h3>❤️ Valentine Day</h3>
+<div class="pin"><img src="valentine.jpg"></div>
+</div>
+
+<!-- 🎮 LOVE GAME -->
+<div>
+<h2>🎮 Love Quiz</h2>
+<p>Main pyar se aapko kya bulata hu?</p>
+
+<button class="btn" onclick="checkAns(false)">Jaan ❤️</button>
+<button class="btn" onclick="checkAns(false)">Baby 😍</button>
+<button class="btn" onclick="checkAns(true)">Mera baccha ❤️ 😘</button>
+<button class="btn" onclick="checkAns(false)">Sweetheart 💖</button>
+
+<p id="quizResult"></p>
+</div>
+
+<div id="secret" class="hidden">
+💖 Tum meri ekloti jaan ho ❤️
+</div>
+
+<div id="outro">💖 I Love You Forever 💖</div>
 
 <script>
 
@@ -152,6 +184,11 @@ Sach kahu… mohabbat tum ho ❤️
 document.getElementById("fingerLock").onclick=()=>{
 document.getElementById("fingerLock").style.display="none";
 };
+
+/* 🎵 Song start on tap */
+document.body.addEventListener("click",()=>{
+document.getElementById("bgMusic").play();
+},{once:true});
 
 /* 💘 Falling hearts */
 setInterval(()=>{
@@ -161,14 +198,11 @@ h.innerHTML="💘";
 h.style.left=Math.random()*100+"vw";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
-},400);
+},500);
 
-/* 💖 Tap hearts + slow motion */
+/* 💖 Tap hearts */
 document.addEventListener("click",(e)=>{
-document.body.classList.add("slowLove");
-setTimeout(()=>document.body.classList.remove("slowLove"),800);
-
-for(let i=0;i<6;i++){
+for(let i=0;i<5;i++){
 let heart=document.createElement("div");
 heart.className="tapHeart";
 heart.innerHTML="❤️";
@@ -177,11 +211,19 @@ heart.style.top=e.clientY+"px";
 document.body.appendChild(heart);
 setTimeout(()=>heart.remove(),1000);
 }
-
-document.getElementById("bgMusic").play();
 });
 
-/* 💋 Kiss Explosion */
+/* 🎮 Game logic */
+function checkAns(correct){
+if(correct){
+document.getElementById("quizResult").innerHTML="🥹 Bilkul sahi ❤️";
+document.getElementById("secret").classList.remove("hidden");
+}else{
+document.getElementById("quizResult").innerHTML="😜 Galat… fir try karo";
+}
+}
+
+/* 💋 Kiss explosion */
 function kissExplosion(){
 for(let i=0;i<25;i++){
 let h=document.createElement("div");
@@ -195,22 +237,12 @@ setTimeout(()=>h.remove(),1200);
 }
 setTimeout(kissExplosion,6000);
 
-/* 📜 Auto Romantic Scroll */
-let autoScroll=true;
-function romanticScroll(){
-if(!autoScroll) return;
-window.scrollBy(0,1);
-requestAnimationFrame(romanticScroll);
-}
-setTimeout(()=>romanticScroll(),4000);
-document.addEventListener("touchstart",()=>autoScroll=false);
-
 /* 🎬 Outro */
 setTimeout(()=>{
 document.getElementById("outro").classList.add("show");
 },12000);
 
-/* 👑 GOD MODE – Tilt Phone Hearts Move */
+/* 👑 GOD MODE tilt */
 window.addEventListener("deviceorientation",(e)=>{
 let x=e.gamma;
 document.querySelectorAll(".heart").forEach(h=>{
