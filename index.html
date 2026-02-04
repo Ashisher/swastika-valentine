@@ -1,164 +1,222 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>My Love App ❤️</title>
+<title>Mera Baccha ❤️</title>
 
 <style>
 body{
 margin:0;
 font-family:sans-serif;
-background:linear-gradient(135deg,#ff5f9e,#ff9a9e,#fad0c4);
-color:#fff;
+text-align:center;
+color:white;
+overflow-x:hidden;
+background:linear-gradient(180deg,#ff9fb3,#ff7f9c);
+animation:softGlow 4s infinite alternate;
 }
-.app{max-width:430px;margin:auto;height:100vh;display:flex;flex-direction:column;overflow:hidden}
-.header{height:55px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);font-size:20px}
-.content{flex:1;overflow-y:auto;padding:15px}
-.card{background:rgba(255,255,255,.2);padding:18px;border-radius:20px;margin:15px 0;text-align:center}
-.btn{display:block;background:#ff2f6d;color:#fff;border:none;border-radius:30px;padding:14px;margin:8px 0;font-size:17px;text-decoration:none}
-.hidden{display:none}
-.photo{width:100%;border-radius:18px;margin-bottom:10px}
 
-#toast{position:fixed;bottom:-80px;left:50%;transform:translateX(-50%);background:#ff2f6d;padding:14px;border-radius:30px;transition:.4s}
-#toast.show{bottom:90px}
+/* 💎 GLOW NAME */
+.glowName{
+font-size:30px;
+text-shadow:0 0 10px #fff,0 0 20px #ff2f6d;
+animation:nameGlow 2s infinite alternate;
+}
+@keyframes nameGlow{from{letter-spacing:1px;}to{letter-spacing:3px;}}
 
-#notify{position:fixed;top:-80px;left:50%;transform:translateX(-50%);background:#fff;color:#ff2f6d;padding:14px;border-radius:15px;transition:.5s}
-#notify.show{top:20px}
+/* 🔐 Finger Unlock */
+#fingerLock{
+position:fixed;
+top:0;left:0;width:100%;height:100%;
+background:#ff7f9c;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+.finger{font-size:26px;background:rgba(255,255,255,.2);padding:20px;border-radius:20px}
 
-#heartbeat{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:80px;opacity:0}
-#heartbeat.beat{animation:hb 1.2s ease}
-@keyframes hb{
-0%{transform:translate(-50%,-50%) scale(.5);opacity:0}
-30%{transform:translate(-50%,-50%) scale(1.2);opacity:1}
-60%{transform:translate(-50%,-50%) scale(1)}
-100%{transform:translate(-50%,-50%) scale(.5);opacity:0}
+/* 🌌 Stars */
+#stars{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background-image:radial-gradient(white 1px,transparent 1px);
+background-size:40px 40px;
+opacity:.25;
+z-index:-1;
+}
+
+/* 💘 Falling Hearts */
+.heart{
+position:fixed;
+top:-20px;
+font-size:36px;
+animation:fall 6s linear infinite;
+}
+@keyframes fall{0%{transform:translateY(-10vh);}100%{transform:translateY(110vh);}}
+
+/* 📸 Slider */
+.slider{
+display:flex;
+overflow-x:auto;
+scroll-snap-type:x mandatory;
+gap:20px;
+padding:20px;
+}
+.slide{
+min-width:80%;
+scroll-snap-align:center;
+background:rgba(255,255,255,.15);
+border-radius:20px;
+padding:15px;
+}
+.slide img{
+width:100%;
+border-radius:18px;
+border:6px solid #fff;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+animation:photoPulse 1.6s infinite ease-in-out;
+}
+@keyframes photoPulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.05);}
+100%{transform:scale(1);}
+}
+
+/* 💖 Tap hearts */
+.tapHeart{
+position:fixed;
+font-size:42px;
+animation:pop 1s forwards;
+}
+@keyframes pop{
+0%{opacity:1;transform:scale(1);}
+100%{opacity:0;transform:translateY(-80px) scale(2);}
+}
+
+/* 💬 Outro */
+#outro{
+position:fixed;
+bottom:-120px;
+left:50%;
+transform:translateX(-50%);
+background:#ff2f6d;
+padding:20px 30px;
+border-radius:30px;
+transition:.8s;
+}
+#outro.show{bottom:40px}
+
+/* 🫶 Slow motion */
+.slowLove{animation:slowMode .8s ease}
+@keyframes slowMode{
+0%{transform:scale(1);}
+50%{transform:scale(1.03);}
+100%{transform:scale(1);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
-<div class="header">❤️ My Love App</div>
+<div id="fingerLock"><div class="finger">🔒 Touch to Unlock 💖</div></div>
+<div id="stars"></div>
 
-<div class="content">
+<h1 class="glowName">❤️ Ashish 💘 Mera Baccha ❤️</h1>
 
-<div class="card">
-<h2>💔 I Miss You</h2>
+<p>
+Likhu… toh lafz tum ho <br>
+Sochu… toh khayaal tum ho <br>
+Maangu… toh dua tum ho <br>
+Sach kahu… mohabbat tum ho ❤️
+</p>
 
-<a class="btn" target="_blank"
-href="https://wa.me/918707873301?text=Mera%20baccha%20❤️%20mujhe%20tumhari%20yaad%20aa%20rahi%20hai%20😘">
-Send on WhatsApp
-</a>
-
-<a class="btn" target="_blank"
-href="https://wa.me/918707873301?text=Good%20Morning%20mera%20baccha%20🌅">
-🌅 Good Morning
-</a>
-
-<a class="btn" target="_blank"
-href="https://wa.me/918707873301?text=Good%20Night%20mera%20baccha%20🌙">
-🌙 Good Night
-</a>
+<!-- 📸 SWIPE SLIDER -->
+<div class="slider">
+<div class="slide"><h3>🌹 Rose Day</h3><img src="rose.jpg"></div>
+<div class="slide"><h3>💍 Propose Day</h3><img src="propose.jpg"></div>
+<div class="slide"><h3>🍫 Chocolate Day</h3><img src="chocolate.jpg"></div>
+<div class="slide"><h3>🧸 Teddy Day</h3><img src="teddy.jpg"></div>
+<div class="slide"><h3>🤝 Promise Day</h3><img src="promise.jpg"></div>
+<div class="slide"><h3>🤗 Hug Day</h3><img src="hug.jpg"></div>
+<div class="slide"><h3>💋 Kiss Day</h3><img src="kiss.jpg"></div>
+<div class="slide"><h3>❤️ Valentine Day</h3><img src="valentine.jpg"></div>
 </div>
 
-<div class="card">
-<h2>🎮 Love Quiz</h2>
-<p>Main pyar se aapko kya bulata hu?</p>
+<audio id="bgMusic" src="raabta.mp3" loop></audio>
 
-<button class="btn" onclick="checkAns(false)">Jaan ❤️</button>
-<button class="btn" onclick="checkAns(false)">Baby 😍</button>
-<button class="btn" onclick="checkAns(true)">Mera baccha ❤️ 😘</button>
-<button class="btn" onclick="checkAns(false)">Sweetheart 💖</button>
-
-<p id="quizResult"></p>
-</div>
-
-<div id="photoLock" class="card hidden">
-<h2>🔐 Secret Love Memories</h2>
-
-<img src="rose.jpg" class="photo">
-<img src="propose.jpg" class="photo">
-<img src="chocolate.jpg" class="photo">
-<img src="teddy.jpg" class="photo">
-<img src="hug.jpg" class="photo">
-<img src="valentine.jpg" class="photo">
-</div>
-
-<div id="finalSecret" class="card hidden">
-💖 Mera baccha… hamesha tumhare saath rahunga ❤️
-</div>
-
-</div>
-</div>
-
-<audio id="unlockSound" src="unlock.mp3"></audio>
-<audio id="wrongSound" src="wrong.mp3"></audio>
-<audio id="bgMusic" src="bg.mp3" loop></audio>
-
-<div id="toast">💖 Mera baccha… tumne dil jeet liya ❤️</div>
-<div id="notify">💌 New Message: Your love misses you ❤️</div>
-<div id="heartbeat">❤️</div>
+<div id="outro">💖 I Love You Forever Mera Baccha 💖</div>
 
 <script>
-function firework(){
-for(let i=0;i<15;i++){
+
+/* 🔐 Unlock */
+document.getElementById("fingerLock").onclick=()=>{
+document.getElementById("fingerLock").style.display="none";
+};
+
+/* 💘 Falling hearts */
+setInterval(()=>{
 let h=document.createElement("div");
-h.innerHTML="💖";
-h.style.position="fixed";
-h.style.left=Math.random()*100+"%";
-h.style.top=Math.random()*100+"%";
-h.style.fontSize="28px";
+h.className="heart";
+h.innerHTML="💘";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},400);
+
+/* 💖 Tap hearts + slow motion */
+document.addEventListener("click",(e)=>{
+document.body.classList.add("slowLove");
+setTimeout(()=>document.body.classList.remove("slowLove"),800);
+
+for(let i=0;i<6;i++){
+let heart=document.createElement("div");
+heart.className="tapHeart";
+heart.innerHTML="❤️";
+heart.style.left=e.clientX+"px";
+heart.style.top=e.clientY+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),1000);
+}
+
+document.getElementById("bgMusic").play();
+});
+
+/* 💋 Kiss Explosion */
+function kissExplosion(){
+for(let i=0;i<25;i++){
+let h=document.createElement("div");
+h.className="tapHeart";
+h.innerHTML="💋";
+h.style.left=(window.innerWidth/2)+"px";
+h.style.top=(window.scrollY+300)+"px";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),1200);
 }
 }
+setTimeout(kissExplosion,6000);
 
-function checkAns(correct){
-const r=document.getElementById("quizResult");
-
-if(correct){
-r.innerHTML="🥹💖 Bilkul sahi, mera baccha ❤️";
-document.getElementById("photoLock").classList.remove("hidden");
-firework();
-
-document.getElementById("unlockSound").play();
-
-if(navigator.vibrate){
-navigator.vibrate([120,80,120,80,200]);
+/* 📜 Auto Romantic Scroll */
+let autoScroll=true;
+function romanticScroll(){
+if(!autoScroll) return;
+window.scrollBy(0,1);
+requestAnimationFrame(romanticScroll);
 }
+setTimeout(()=>romanticScroll(),4000);
+document.addEventListener("touchstart",()=>autoScroll=false);
 
-const t=document.getElementById("toast");
-t.classList.add("show");
-setTimeout(()=>t.classList.remove("show"),3000);
-
-const n=document.getElementById("notify");
-n.classList.add("show");
-setTimeout(()=>n.classList.remove("show"),3000);
-
-const h=document.getElementById("heartbeat");
-h.classList.add("beat");
-setTimeout(()=>h.classList.remove("beat"),1200);
-
-const bg=document.getElementById("bgMusic");
-bg.volume=0;
-bg.play();
-let v=0;
-const fade=setInterval(()=>{
-if(v<0.5){v+=0.05;bg.volume=v;}
-else clearInterval(fade);
-},200);
-
+/* 🎬 Outro */
 setTimeout(()=>{
-document.getElementById("finalSecret").classList.remove("hidden");
-},3000);
+document.getElementById("outro").classList.add("show");
+},12000);
 
-}else{
-r.innerHTML="😜 Galat… fir se try karo ❤️";
-document.getElementById("wrongSound").play();
-if(navigator.vibrate){navigator.vibrate(120);}
-}
-}
+/* 👑 GOD MODE – Tilt Phone Hearts Move */
+window.addEventListener("deviceorientation",(e)=>{
+let x=e.gamma;
+document.querySelectorAll(".heart").forEach(h=>{
+h.style.transform=`translateX(${x}px)`;
+});
+});
 </script>
 
 </body>
