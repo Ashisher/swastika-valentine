@@ -42,13 +42,13 @@ opacity:.25;
 z-index:-1;
 }
 
-/* 📌 Pinned Photos */
+/* 📌 Pinned style */
 .pin{
 position:relative;
 display:inline-block;
 margin:25px;
 }
-.pin img{
+.pin img,.pin video{
 width:220px;
 border-radius:18px;
 border:6px solid #fff;
@@ -65,7 +65,7 @@ transform:translateX(-50%);
 font-size:34px;
 }
 
-/* 💘 Emoji rain */
+/* 💘 Emoji Rain */
 .heart{
 position:fixed;
 top:-20px;
@@ -89,17 +89,6 @@ pointer-events:none;
 100%{opacity:0;transform:translateY(-100px) scale(2);}
 }
 
-/* 🎮 Game Buttons */
-.btn{
-background:#ff2f6d;
-border:none;
-padding:14px 20px;
-margin:6px;
-border-radius:30px;
-color:#fff;
-font-size:16px;
-}
-
 /* 🎬 Outro */
 #outro{
 position:fixed;
@@ -112,8 +101,6 @@ border-radius:30px;
 transition:.8s;
 }
 #outro.show{bottom:40px}
-
-.hidden{display:none}
 </style>
 </head>
 
@@ -133,7 +120,7 @@ Maangu… toh dua tum ho ❤️
 <!-- 🎵 SONG -->
 <audio id="bgMusic" src="song.mp3" loop></audio>
 
-<!-- 📸 LOVE DAYS -->
+<!-- 📸 VALENTINE DAYS -->
 <div>
 <h3>🌹 Rose Day</h3>
 <div class="pin"><img src="rose.jpg"></div>
@@ -160,21 +147,10 @@ Maangu… toh dua tum ho ❤️
 <div class="pin"><img src="valentine.jpg"></div>
 </div>
 
-<!-- 🎮 LOVE QUIZ -->
+<!-- 📂 AUTO LOVE LIBRARY -->
 <div>
-<h2>🎮 Love Quiz</h2>
-<p>Main pyar se aapko kya bulata hu?</p>
-
-<button class="btn" onclick="checkAns(false)">Jaan ❤️</button>
-<button class="btn" onclick="checkAns(false)">Baby 😍</button>
-<button class="btn" onclick="checkAns(true)">Mera baccha ❤️ 😘</button>
-<button class="btn" onclick="checkAns(false)">Sweetheart 💖</button>
-
-<p id="quizResult"></p>
-</div>
-
-<div id="secret" class="hidden">
-💖 Tum meri ekloti jaan ho ❤️
+<h2>📂 Our Love Library ❤️</h2>
+<div id="library"></div>
 </div>
 
 <div id="outro">💖 I Love You Forever 💖</div>
@@ -189,7 +165,7 @@ document.getElementById("fingerLock").style.display="none";
 /* 💘 Emoji List */
 const emojis=["❤️","💘","😍","😘","💖","💋","💕","🌹","✨","🥰"];
 
-/* 🎵 Song Start + Emoji Rain */
+/* 🎵 Song start + emoji rain */
 const music=document.getElementById("bgMusic");
 
 document.body.addEventListener("click",()=>{
@@ -219,14 +195,23 @@ document.body.appendChild(el);
 setTimeout(()=>el.remove(),1200);
 });
 
-/* 🎮 Game */
-function checkAns(correct){
-if(correct){
-document.getElementById("quizResult").innerHTML="🥹 Bilkul sahi ❤️";
-document.getElementById("secret").classList.remove("hidden");
-}else{
-document.getElementById("quizResult").innerHTML="😜 Galat… fir try karo";
+/* 📂 AUTO LOAD LIBRARY */
+/* 18 PHOTOS */
+const library=document.getElementById("library");
+
+for(let i=1;i<=18;i++){
+let div=document.createElement("div");
+div.className="pin";
+div.innerHTML=`<img src="photo${i}.jpg">`;
+library.appendChild(div);
 }
+
+/* 8 VIDEOS */
+for(let i=1;i<=8;i++){
+let div=document.createElement("div");
+div.className="pin";
+div.innerHTML=`<video src="video${i}.mp4" controls></video>`;
+library.appendChild(div);
 }
 
 /* 🎬 Outro */
